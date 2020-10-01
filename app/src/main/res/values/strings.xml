@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">POLINEMA Registration</string>
+    <string-array name="jurusan_polinema">
+        <item>Akuntansi</item>
+        <item>Administrasi Niaga</item>
+        <item>Bahasa Inggris</item>
+        <item>Teknik Elektro</item>
+        <item>Teknik Mesin</item>
+        <item>Teknik Sipil</item>
+        <item>Teknik Kimia</item>
+        <item>Teknologi Informasi</item>
+    </string-array>
+
+    <string-array name="prodi_akuntansi">
+        <item>D-IV Akuntansi Manajemen</item>
+        <item>D-IV Keuangan</item>
+        <item>D-III Akuntansi</item>
+    </string-array>
+
+    <string-array name="prodi_ti">
+        <item>D-IV Teknik Informatika</item>
+        <item>D-III Manajemen Informasi</item>
+    </string-array>
+
+    <string-array name="prodi_te">
+        <item>S2 Magister Teknik Elektro</item>
+        <item>D-IV Teknik Elektronika</item>
+        <item>D-IV Sistem Kelistrikan</item>
+        <item>D-IV Jaringan Telekomunikasi Digital</item>
+        <item>D-III Teknik Elektronika</item>
+        <item>D-III Kelistrikan Industri</item>
+        <item>D-III Teknik Telekomunikasi</item>
+    </string-array>
+
+</resources>
