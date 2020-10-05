@@ -3,7 +3,7 @@
     <string-array name="jurusan_polinema">
         <item>Akuntansi</item>
         <item>Administrasi Niaga</item>
-        <item>Bahasa Inggris</item>
+        <item>Bahasa</item>
         <item>Teknik Elektro</item>
         <item>Teknik Mesin</item>
         <item>Teknik Sipil</item>
@@ -30,6 +30,35 @@
         <item>D-III Teknik Elektronika</item>
         <item>D-III Kelistrikan Industri</item>
         <item>D-III Teknik Telekomunikasi</item>
+    </string-array>
+
+    <string-array name="prodi_ts">
+        <item>D-IV Manajemen Rekayasa Konstruksi</item>
+        <item>D-IV Teknologi Rekayasa Konstruksi Jalan Dan Jembatan</item>
+        <item>D-III Teknik Sipil</item>
+        <item>D-III Teknologi Pertambangan</item>
+        <item>D-III Teknologi Konstruksi Jalan, Jembatan, Dan Bangunan Air</item>
+    </string-array>
+
+    <string-array name="prodi_tm">
+        <item>D-IV Teknik Otomotif Elektronik</item>
+        <item>D-IV Teknik Mesin Produksi Dan Perawatan</item>
+        <item>D-III Teknik Mesin</item>
+    </string-array>
+
+    <string-array name="prodi_tk">
+        <item>D-IV Teknologi Kimia Industri</item>
+        <item>D-III Teknik Kimia</item>
+    </string-array>
+
+    <string-array name="prodi_admin">
+        <item>D-IV Manajemen Pemasaran</item>
+        <item>D-III Administrasi Bisnis</item>
+    </string-array>
+
+    <string-array name="prodi_bahasa">
+        <item>D-IV Bahasa Inggris Untuk Komunikasi Bisnis Dan Profesional</item>
+        <item>D-III Bahasa Inggris</item>
     </string-array>
 
 </resources>

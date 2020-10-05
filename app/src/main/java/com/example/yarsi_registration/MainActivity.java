@@ -1,61 +1,135 @@
 package com.example.yarsi_registration;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Spinner;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 public class MainActivity extends AppCompatActivity {
-    FragmentPagerAdapter adapterViewPager;
-
+    EditText txtName, txtBirthday, txtAddress;
+    Spinner spinnerJurusan, spinnerProdi;
+    String name, birthday, address, jurusan, prodi;
+    Information pi;
+    final Calendar myCalendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ViewPager vpPager = (ViewPager) findViewById(R.id.viewpager);
-        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
-        vpPager.setAdapter(adapterViewPager);
-        vpPager.setCurrentItem(0);
-    }
+        txtName = findViewById(R.id.txtName);
+        txtBirthday = findViewById(R.id.txtBirthday);
+        txtAddress = findViewById(R.id.txtAddress);
+        spinnerJurusan = findViewById(R.id.jurursanSpinner);
+        spinnerProdi = findViewById(R.id.prodiSpinner);
+        Button btnProceed = findViewById(R.id.btnProceed);
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
-    public static class MyPagerAdapter extends FragmentPagerAdapter {
-        private static int NUM_ITEMS = 2;
-
-        public MyPagerAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
-        }
-
-        // Returns total number of pages
-        @Override
-        public int getCount() {
-            return NUM_ITEMS;
-        }
-
-        // Returns the fragment to display for that page
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0: // Fragment # 0 - This will show FirstFragment
-                    return PersonalInfoFragment.newInstance(0, "Personal Info");
-                case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return ParentInfoFragment.newInstance(1, "Parent Info");
-//                case 2: // Fragment # 1 - This will show SecondFragment
-//                    return SecondFragment.newInstance(2, "Page # 3");
-                default:
-                    return null;
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
             }
-        }
 
-        private String tabTitles[] = new String[]{"Personal Info", "Parent Info", "Status"};
-        // Returns the page title for the top indicator
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return tabTitles[position];
-        }
+        };
+        txtBirthday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(MainActivity.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+        spinnerJurusan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String spinnerValue = spinnerJurusan.getSelectedItem().toString();
+                if (spinnerValue.equals("Teknologi Informasi")) {
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter
+                            .createFromResource(MainActivity.this, R.array.prodi_ti,
+                                    android.R.layout.simple_spinner_dropdown_item);
+                    spinnerProdi.setAdapter(adapter);
+                } else if (spinnerValue.equals("Akuntansi")) {
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter
+                            .createFromResource(MainActivity.this, R.array.prodi_akuntansi,
+                                    android.R.layout.simple_spinner_dropdown_item);
+                    spinnerProdi.setAdapter(adapter);
+                } else if (spinnerValue.equals("Teknik Kimia")) {
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter
+                            .createFromResource(MainActivity.this, R.array.prodi_tk,
+                                    android.R.layout.simple_spinner_dropdown_item);
+                    spinnerProdi.setAdapter(adapter);
+                } else if (spinnerValue.equals("Teknik Mesin")) {
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter
+                            .createFromResource(MainActivity.this, R.array.prodi_tm,
+                                    android.R.layout.simple_spinner_dropdown_item);
+                    spinnerProdi.setAdapter(adapter);
+                } else if (spinnerValue.equals("Teknik Sipil")) {
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter
+                            .createFromResource(MainActivity.this, R.array.prodi_ts,
+                                    android.R.layout.simple_spinner_dropdown_item);
+                    spinnerProdi.setAdapter(adapter);
+                } else if (spinnerValue.equals("Teknik Elektro")) {
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter
+                            .createFromResource(MainActivity.this, R.array.prodi_te,
+                                    android.R.layout.simple_spinner_dropdown_item);
+                    spinnerProdi.setAdapter(adapter);
+                } else if (spinnerValue.equals("Administrasi Niaga")){
+                    ArrayAdapter<CharSequence> adapter =  ArrayAdapter
+                            .createFromResource(MainActivity.this, R.array.prodi_admin,
+                                    android.R.layout.simple_spinner_dropdown_item);
+                    spinnerProdi.setAdapter(adapter);
+                } else if (spinnerValue.equals("Bahasa")){
+                    ArrayAdapter<CharSequence> adapter =  ArrayAdapter
+                            .createFromResource(MainActivity.this, R.array.prodi_bahasa,
+                                    android.R.layout.simple_spinner_dropdown_item);
+                    spinnerProdi.setAdapter(adapter);
+                }
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        btnProceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                name = txtName.getText().toString();
+                birthday = txtBirthday.getText().toString();
+                address = txtAddress.getText().toString();
+                jurusan = spinnerJurusan.getSelectedItem().toString();
+                prodi = spinnerProdi.getSelectedItem().toString();
+
+                pi = new Information(name, birthday, address, jurusan, prodi);
+                Intent i = new Intent(MainActivity.this, ParentInfoActivity.class);
+                Intent p = new Intent(MainActivity.this, ConfirmActivity.class);
+                p.putExtra("personaldata", pi);
+                startActivity(i);
+            }
+        });
     }
+
+    private void updateLabel() {
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        txtBirthday.setText(sdf.format(myCalendar.getTime()));
+    }
+
 }
